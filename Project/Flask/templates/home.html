@@ -8,17 +8,17 @@
 
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
 
-  <link rel="stylesheet" href="fonts/icomoon/style.css">
+  <link rel="stylesheet" href="../static/Alogin_home/fonts/icomoon/style.css">
 
-  <link rel="stylesheet" href="css/owl.carousel.min.css">
+  <link rel="stylesheet" href="../static/Alogin_home/css/owl.carousel.min.css">
 
   <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="../static/Alogin_home/css/bootstrap.min.css">
 
   <!-- Style -->
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="../static/Alogin_home/css/style.css">
 
-  <title>Appointments</title>
+  <title>Welcome</title>
 </head>
 
 <body>
@@ -40,7 +40,7 @@
 
 
         <div class="site-logo">
-          <a href="index.html" class="text-black"><span class="text-primary">Operation Rooms</a>
+          <a href="home.html" class="text-black"><span class="text-primary">Operation Rooms</a>
         </div>
 
         <div class="col-12">
@@ -79,12 +79,18 @@
     </div>
 
   </header>
-
-  <script src="js/jquery-3.3.1.min.js"></script>
-  <script src="js/popper.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="js/jquery.sticky.js"></script>
-  <script src="js/main.js"></script>
+  {% block body %}
+  <div class="hero" style="background-image: url('../static/Alogin_home/images/bg1.jpg'); height: 635px;">
+    <div class="text">
+      <h1 class="font-weight-normal">Welcome!</h1>
+    </div>
+  </div>
+  {% endblock  %}
+  <script src="../static/Alogin_home/js/jquery-3.3.1.min.js"></script>
+  <script src="../static/Alogin_home/js/popper.min.js"></script>
+  <script src="../static/Alogin_home/js/bootstrap.min.js"></script>
+  <script src="../static/Alogin_home/js/jquery.sticky.js"></script>
+  <script src="../static/Alogin_home/js/main.js"></script>
 </body>
 
 </html>

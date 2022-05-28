@@ -8,15 +8,17 @@
 
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
 
-  <link rel="stylesheet" href="fonts/icomoon/style.css">
+  <link rel="stylesheet" href="../static/Blogin_home/fonts/icomoon/style.css">
 
-  <link rel="stylesheet" href="css/owl.carousel.min.css">
+  <link rel="stylesheet" href="../static/Blogin_home/css/owl.carousel.min.css">
 
   <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="../static/Blogin_home/css/bootstrap.min.css">
 
   <!-- Style -->
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="../static/Blogin_home/css/style.css">
+  {% block head %}
+  {% endblock  %}
 
   <title>Welcome</title>
 </head>
@@ -49,7 +51,7 @@
             <ul class="site-menu main-menu js-clone-nav ml-auto d-none d-lg-block">
               <li><a href="index.html" class="nav-link">Home</a></li>
               <li><a href="complain.html" class="nav-link">Contact Us / Complains</a></li>
-              <a href="../sign in/login.html"><button type="button" class="btn btn-outline-primary me-2" style="margin-left: 300px;">Login</button></a>
+              <a href="login.html"><button type="button" class="btn btn-outline-primary me-2" style="margin-left: 300px;">Login</button></a>
 
             </ul>
           </nav>
@@ -64,19 +66,22 @@
 
   </header>
 
-  <div class="hero" style="background-image: url('images/bg1.jpg'); height: 635px;;">
+  <div class="hero" style="background-image: url('../static/Blogin_home/images/bg1.jpg'); 
+  {% block height %}height: 635px;{% endblock  %} ;">
+  {% block body %}
     <div class="text">
       <h1 class="font-weight-normal">Welcome!</h1>
     </div>
+  {% endblock %}
   </div>
 
 
 
-  <script src="js/jquery-3.3.1.min.js"></script>
-  <script src="js/popper.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="js/jquery.sticky.js"></script>
-  <script src="js/main.js"></script>
+  <script src="../static/Blogin_home/js/jquery-3.3.1.min.js"></script>
+  <script src="../static/Blogin_home/js/popper.min.js"></script>
+  <script src="../static/Blogin_home/js/bootstrap.min.js"></script>
+  <script src="../static/Blogin_home/js/jquery.sticky.js"></script>
+  <script src="../static/Blogin_home/js/main.js"></script>
 </body>
 
 </html>
