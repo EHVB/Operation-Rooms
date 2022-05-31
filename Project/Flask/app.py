@@ -4,7 +4,7 @@ from flask import Flask, redirect, url_for, request,render_template,session
 mydb = mysql.connector.connect(
   host="localhost",
   user="root",
-  passwd="admin",
+  passwd="ehab",
   database="datatry"
 )
 mycursor = mydb.cursor()
@@ -83,9 +83,13 @@ def rooms_info():
 def sign_up():
    return render_template('sign_up.html')
 ########################################################
-@app.route('/profile')
-def profile():
-   return render_template('profile.html')
+@app.route('/info')
+def info():
+   return render_template('info.html')
+########################################################
+@app.route('/data')
+def data():
+   return render_template('data.html')
 ########################################################
 @app.route('/logout')
 def logout():

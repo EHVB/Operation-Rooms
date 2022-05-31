@@ -17,6 +17,9 @@
 
   <!-- Style -->
   <link rel="stylesheet" href="../static/Alogin_home/css/style.css">
+  {% block head %}
+  <link rel="stylesheet" href="../static/Blogin_home/css/style2.css">
+  {% endblock head %}
 
   <title>Welcome</title>
 </head>
@@ -48,7 +51,13 @@
 
             <ul class="site-menu main-menu js-clone-nav ml-auto d-none d-lg-block">
               <li><a href="home" class="nav-link">Home</a></li>
-              <li><a href="profile" class="nav-link">Profile </a></li>
+              <li class="has-children">
+                <a class="nav-link">Profile</a>
+                <ul class="dropdown arrow-top">
+                  <li><a href="info" class="nav-link">Personal Info</a></li>
+                  <li><a href="data" class="nav-link">Personal Data</a></li>
+                </ul>
+              </li>
 
 
               <li class="has-children">
