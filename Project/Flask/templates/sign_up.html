@@ -19,6 +19,12 @@
     <link
         href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
+        <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css"
+    />
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
     <!-- Vendor CSS-->
     <link href="../static/sign up/vendor/select2/select2.min.css" rel="stylesheet" media="all">
@@ -34,7 +40,21 @@
             <div class="card card-4">
                 <div class="card-body">
                     <h2 class="title">Sign Up</h2>
-                    <form method="POST">
+                    <form method="POST" id ="form">
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">user name</label>
+                                    <input class="input--style-4" type="text" name="user_name">
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">password</label>
+                                    <input class="input--style-4" type="password" name="password">
+                                </div>
+                            </div>
+                        </div>
                         <div class="row row-space">
                             <div class="col-2">
                                 <div class="input-group">
@@ -78,23 +98,22 @@
                         <div class="row row-space">
                             <div class="col-2">
                                 <div class="input-group">
-                                    <label class="label">Email</label>
-                                    <input class="input--style-4" type="email" name="email">
+                                    <label class="label">social security number</label>
+                                    <input class="input--style-4" type="text" name="ssn">
                                 </div>
                             </div>
                             <div class="col-2">
                                 <div class="input-group">
                                     <label class="label">Phone Number</label>
-                                    <input class="input--style-4" type="text" name="phone">
+                                    <input id ="phone" class="input--style-4" type="tel" name="phone">
                                 </div>
                             </div>
                         </div>
                         <div class="input-group">
-                            <label class="label">Subject</label>
+                            <label class="label">job title</label>
                             <div class="rs-select2 js-select-simple select--no-search">
-                                <select name="subject">
+                                <select id="job" name="job">
                                     <option disabled="disabled" selected="selected">Choose option</option>
-                                    <option>Admin</option>
                                     <option>Doctor</option>
                                     <option>Nurse</option>
                                     <option>Engineer</option>
@@ -102,6 +121,7 @@
                                 <div class="select-dropdown"></div>
                             </div>
                         </div>
+                        <div class="input-group" id="special"></div>
                         <div class="container-login100-form-btn">
                             <div class="wrap-login100-form-btn">
                                 <div class="login100-form-bgbtn"></div>
@@ -136,6 +156,34 @@
     <script src="../static/sign up/js/global.js"></script>
 
 </body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+
+<script>
+    const phoneInputField = document.querySelector("#phone");
+    const phoneInput = window.intlTelInput(phoneInputField, {
+      utilsScript:
+        "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+    });
+</script>
+<script>
+    $(document).ready(function(){
+        $('#job').change(function () {
+            var selectedItem = $(this).val();
+            if (selectedItem === 'Doctor') {
+                if (!$('#new').length) {
+                    $('<div id="child"><label class="label">specialization</label><input class="input--style-4" type="text" name="specialization" id="new"></div>').appendTo('#special'); 
+                }
+            }
+            if (selectedItem !== 'Doctor') {
+                if ($('#new').length) {
+                    var element = document.getElementById("special");
+                    var child=document.getElementById("child");
+                    element.removeChild(child);
+                }
+            }
+        });
+    });
+</script>
+
 
 </html>
 <!-- end document-->
