@@ -18,8 +18,8 @@ def index():
 ########################################################
 @app.route('/home')
 def home():
-      if 'loggedin' in session:
-      return render_template('home.html', authority= session['authority'])
+      if 'loggedin' in session :      
+        return render_template('home.html', authority= session['authority'])
    else: 
       return redirect(url_for('login'))
 ########################################################
