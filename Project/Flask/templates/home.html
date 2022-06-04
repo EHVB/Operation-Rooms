@@ -63,20 +63,32 @@
               <li class="has-children">
                 <a class="nav-link"> Staff</a>
                 <ul class="dropdown arrow-top">
+                  {% if authority == 'admin' or authority ==  'doctor' or authority == 'nurse'%}
                   <li><a href="doctors" class="nav-link">Doctors</a></li>
+                  {%endif%}
+                  {% if authority == 'admin' or authority ==  'engineer'%}
                   <li><a href="engineers" class="nav-link">Engineers</a></li>
+                  {%endif%}
+                  {% if authority == 'admin' or authority ==  'doctor' or authority == 'nurse'%}
                   <li><a href="nurses" class="nav-link">Nurses</a></li>
+                   {%endif%}
                   <!-- <li><a href="#faq-section" class="nav-link">Suppliers</a></li> -->
                 </ul>
               </li>
+              {% if authority == 'admin' or authority ==  'doctor' or authority == 'nurse'%}
               <li><a href="patients" class="nav-link">Patients</a></li>
+              {%endif%}
+              
               <li><a href="appointments" class="nav-link">Appointments</a></li>
+              {% if authority == 'admin' or authority ==  'engineer'%}
               <li><a href="rooms_info" class="nav-link">Rooms Info</a></li>
+              {%endif%}
+              
 
 
 
               <li><a href="about_us" class="nav-link">About Us</a></li>
-              <a href="login"><button type="button" class="btn btn-outline-primary me-2" style="margin-left: 70px;">Log Out</button></a>
+              <a href="logout"><button type="button" class="btn btn-outline-primary me-2" style="margin-left: 70px;">Log Out</button></a>
             </ul>
           </nav>
 
