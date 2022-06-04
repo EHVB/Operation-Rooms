@@ -8,6 +8,13 @@
     <meta name="description" content="Colorlib Templates">
     <meta name="author" content="Colorlib">
     <meta name="keywords" content="Colorlib Templates">
+    <style>
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+         margin: 0;
+        }
+    </style>
 
     <!-- Title Page-->
     <title>Sign Up</title>
@@ -45,13 +52,13 @@
                             <div class="col-2">
                                 <div class="input-group">
                                     <label class="label">user name</label>
-                                    <input class="input--style-4" type="text" name="user_name">
+                                    <input class="input--style-4" type="text" name="user_name" pattern="[a-z]+.{1,}" title="user name must start with letter" required>
                                 </div>
                             </div>
                             <div class="col-2">
                                 <div class="input-group">
                                     <label class="label">password</label>
-                                    <input class="input--style-4" type="password" name="password">
+                                    <input class="input--style-4" type="password" name="password" required>
                                 </div>
                             </div>
                         </div>
@@ -59,13 +66,13 @@
                             <div class="col-2">
                                 <div class="input-group">
                                     <label class="label">first name</label>
-                                    <input class="input--style-4" type="text" name="first_name">
+                                    <input class="input--style-4" type="text" name="first_name" pattern="[a-z]+" title="name can't contain numbers" required>
                                 </div>
                             </div>
                             <div class="col-2">
                                 <div class="input-group">
                                     <label class="label">last name</label>
-                                    <input class="input--style-4" type="text" name="last_name">
+                                    <input class="input--style-4" type="text" name="last_name" pattern="[a-z]+" title="name can't contain numbers" required>
                                 </div>
                             </div>
                         </div>
@@ -74,7 +81,7 @@
                                 <div class="input-group">
                                     <label class="label">Birthday</label>
                                     <div class="input-group-icon">
-                                        <input class="input--style-4 js-datepicker" type="text" name="birthday">
+                                        <input class="input--style-4 js-datepicker" type="text" name="birthday" required>
                                         <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
                                     </div>
                                 </div>
@@ -99,21 +106,21 @@
                             <div class="col-2">
                                 <div class="input-group">
                                     <label class="label">social security number</label>
-                                    <input class="input--style-4" type="text" name="ssn">
+                                    <input class="input--style-4" type="number" name="ssn" required>
                                 </div>
                             </div>
                             <div class="col-2">
                                 <div class="input-group">
                                     <label class="label">Phone Number</label>
-                                    <input id ="phone" class="input--style-4" type="tel" name="phone">
+                                    <input id ="phone" class="input--style-4" type="number" name="phone" required>
                                 </div>
                             </div>
                         </div>
                         <div class="input-group">
                             <label class="label">job title</label>
                             <div class="rs-select2 js-select-simple select--no-search">
-                                <select id="job" name="job">
-                                    <option disabled="disabled" selected="selected">Choose option</option>
+                                <select id="job" name="job" required>
+                                    <option disabled="disabled" selected="selected" value="">Choose option</option>
                                     <option>Doctor</option>
                                     <option>Nurse</option>
                                     <option>Engineer</option>
@@ -170,7 +177,7 @@
             var selectedItem = $(this).val();
             if (selectedItem === 'Doctor') {
                 if (!$('#new').length) {
-                    $('<div id="child"><label class="label">specialization</label><input class="input--style-4" type="text" name="specialization" id="new"></div>').appendTo('#special'); 
+                    $('<div id="child"><label class="label">specialization</label><input class="input--style-4" type="text" name="specialization" id="new" Required></div>').appendTo('#special'); 
                 }
             }
             if (selectedItem !== 'Doctor') {
