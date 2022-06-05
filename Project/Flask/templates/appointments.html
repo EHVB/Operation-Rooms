@@ -1,33 +1,26 @@
 {% extends 'home.html' %}
 {% block body %}
 <table class="table">
-    <thead class="table-primary">
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
-          </tr>
-    </thead>
+  <thead class="table-primary">
+    <tr>
+      {% for rh in data.header %}
+          <th>{{rh}}</th>
+      {% endfor %}
+    </tr>
+  </thead>
     <tbody>
         <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-          </tr>
+            
+          {% for r in data.rec %}
           <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
+              {% for l in r%}
+          <td>{{l}}</td>
+              {% endfor %}
           </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>Larry</td>
-            <td>the Bird</td>
-            <td>@twitter</td>
-          </tr>
+          {% endfor %}
+      </tr>
+          
+          
     </tbody>
   </table>
 {% endblock body %}

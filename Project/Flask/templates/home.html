@@ -83,10 +83,9 @@
               {% if authority == 'admin' or authority ==  'engineer'%}
               <li><a href="rooms_info" class="nav-link">Rooms Info</a></li>
               {%endif%}
-              
-
-
-
+               {% if authority == 'admin' %}
+              <li><a href="viewcomplaints" class="nav-link">View Complaints</a></li>
+              {%endif%}           
               <li><a href="about_us" class="nav-link">About Us</a></li>
               <a href="logout"><button type="button" class="btn btn-outline-primary me-2" style="margin-left: 70px;">Log Out</button></a>
             </ul>
