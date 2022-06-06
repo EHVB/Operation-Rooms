@@ -20,19 +20,16 @@
                   <div class="contact-wrap w-100 p-md-5 p-4">
                     <h3 class="mb-4">Have A Comment? Let Us know!</h3>
                     <div id="form-message-warning" class="mb-4"></div>
-                    <div id="form-message-success" class="mb-4">
-                      Your message was sent, thank you!
-                    </div>
                     <form method="POST" id="contactForm" name="contactForm">
                       <div class="row">
                         <div class="col-md-6">
                           <div class="form-group">
-                            <input type="text" class="form-control" name="name" id="name" placeholder="Name">
+                            <input type="text" class="form-control" name="name" id="name" placeholder="Name" required>
                           </div>
                         </div>
                         <div class="col-md-6">
                           <div class="form-group">
-                            <input type="email" class="form-control" name="email" id="email" placeholder="Email">
+                            <input type="email" class="form-control" name="email" id="email" placeholder="Email" required>
                           </div>
                         </div>
                         <div class="col-md-12">
@@ -43,13 +40,20 @@
                         <div class="col-md-12">
                           <div class="form-group">
                             <textarea name="message" class="form-control" id="message" cols="30" rows="7"
-                              placeholder="Message"></textarea>
+                              placeholder="Message" required></textarea>
                           </div>
                         </div>
                         <div class="col-md-12">
                           <div class="form-group">
                             <input type="submit" value="Send Message" class="btn btn-primary">
                             <div class="submitting"></div>
+                            <div class="text-center p-t-115" style="margin: 20px; text-align: center;">
+                              <label class="label" style="color: Green;">
+                                  {% if msg %} 
+                                    Your message was sent, thank you!
+                                  {% endif %}
+                              </label>
+                          </div>
                           </div>
                         </div>
                       </div>

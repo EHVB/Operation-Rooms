@@ -48,12 +48,11 @@
     <div class="page-wrapper bg-gra-02 p-t-130 p-b-100 font-poppins">
         <div class="wrapper wrapper--w680">
             <div class="card card-4">
-                <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                    <strong>{{msg}}!</strong>
+               <!-- <div class="alert alert-warning alert-dismissible fade show" role="alert">
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
-                  </div>
+                  </div>-->
                 <div class="card-body">
                     <h2 class="title">Sign Up</h2>
                     <form method="POST" id ="form">
@@ -146,6 +145,13 @@
                                     Sign Up
                                 </button>
                             </div>
+                        </div>
+                        <div class="text-center p-t-115" style="margin: 20px; text-align: center;">
+                            <label class="label" {% if msg=="Signed Up successfully, please Wait for admin Activation for your account!" %}  style="color: green;" {% endif %} {% if msg!="Signed Up successfully, please Wait for admin Activation for your account!" %}  style="color: red;" {% endif %}>
+                                {% if msg %} 
+                                {{msg}}
+                                {% endif %}
+                            </label>
                         </div>
                         <div class="text-center p-t-115">
                             <span class="txt1">
