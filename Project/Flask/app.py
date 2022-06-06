@@ -60,7 +60,8 @@ def appointments():
          
       }
             return render_template('data.html',data=data,authority=session['authority'])
-        if session ['authority']== 'engineer' or session['authority'] == 'admin': 
+        if session ['authority']== 'engineer' or session['authority'] == 'admin':
+
 
            sql_select_Query = "select appointments.OR_number,appointments.start_date,appointments.end_date,  nurse.fname as 'nurse.fname' ,nurse .lname as'nurse.lastname',doctors.fname as 'Doctor fName', doctors.lname 'Doctor lName' from doctors join appointments on doctors.user_name=D_user_name join nurse on N_user_name = nuser_name join patient on patient_ssn = patient.ssn  Where DATE(start_date) > %s"
            mycursor.execute(sql_select_Query,(currentdate,))
@@ -95,7 +96,7 @@ def complain():
 def doctors():
    if 'loggedin' in session: 
        
-      if session ['authority']== 'doctor' or session ['authority']== 'nurse' : 
+      if session ['authority']== 'doctor' or session ['authority']== 'nurse' or session ['authority']== 'admin' : 
         
           showdoc= 'SELECT fname,lname,phone,specialization from doctors'
           mycursor.execute(showdoc)
@@ -194,7 +195,7 @@ def login():
 @app.route('/nurses')
 def nurses():
    if 'loggedin' in session: 
-       if session ['authority']== 'doctor' or session ['authority']== 'nurse' : 
+       if session ['authority']== 'doctor' or session ['authority']== 'nurse' or session ['authority']== 'admin' : 
       
        
           shownurse= 'SELECT fname,lname,phone from nurse'
@@ -215,7 +216,7 @@ def nurses():
 @app.route('/patients')
 def patients():
    if 'loggedin' in session:
-       if session ['authority']== 'doctor' or session ['authority']== 'nurse' : 
+       if session ['authority']== 'doctor' or session ['authority']== 'nurse' or session ['authority']== 'admin' : 
       
            showpatient= 'SELECT fname,lname,sex,birth_date,phone from patient'
            mycursor.execute(showpatient)
