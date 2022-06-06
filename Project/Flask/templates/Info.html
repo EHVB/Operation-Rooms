@@ -12,7 +12,18 @@
             <div class="row g-0">
               <div class="col-md-4 gradient-custom text-center text-white"
                 style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
+                {%if data.sex=='male' and( authority == 'doctor' or authority == 'nurse')%}
                 <img src="../static/Alogin_home/images/doctor.png"
+                {%endif%}
+                 {%if data.sex=='male' and( authority == 'admin' or authority == 'engineer')%}
+                <img src="../static/Alogin_home/images/engineer.png"
+                {%endif%}
+         {%if data.sex=='female' and( authority == 'admin' or authority == 'engineer')%}
+                <img src="../static/Alogin_home/images/fengineer.png"
+                {%endif%}
+                {%if data.sex=='female'and( authority == 'doctor' or authority == 'nurse')%}
+                <img src="../static/Alogin_home/images/fdoctor.png"
+                {%endif%}
                   alt="Avatar" class="img-fluid my-5" style="width: 80px;" />
                 <h5>{{data.fname}} {{data.lname}}</h5>
               </div>
@@ -23,28 +34,36 @@
                   <div class="row pt-1">
                     <div class="col-6 mb-3">
                       <h6>User Name</h6>
-                      <p class="text-muted">ehab</p>
+                      <p class="text-muted">{{data.username}}</p>
                     </div>
                     <div class="col-6 mb-3">
                       <h6>Phone</h6>
-                      <p class="text-muted">01067602273</p>
+                      <p class="text-muted">{{data.phone}}</p>
                     </div>
-                    <div class="col-6 mb-3">
-                        <h6>Specialization</h6>
-                        <p class="text-muted">Surgery</p>
+                       <div class="col-6 mb-3">
+                        <h6>Birth Date</h6>
+                        <p class="text-muted">{{data.birthdate}}</p>
                     </div>
+                 
                     <div class="col-6 mb-3">
                         <h6>Sex</h6>
-                        <p class="text-muted">Male</p>
+                        <p class="text-muted">{{data.sex}}</p>
                     </div>
                     <div class="col-6 mb-3">
                         <h6>SSN</h6>
-                        <p class="text-muted">12345678912312</p>
+                        <p class="text-muted">{{data.ssn}}</p>
                     </div>
-                    <div class="col-6 mb-3">
-                        <h6>Birth Date</h6>
-                        <p class="text-muted">12/11/2000</p>
+                     <div class="col-6 mb-3">
+                        <h6>Salary</h6>
+                        <p class="text-muted">{{data.salary}}</p>
                     </div>
+                       <div class="col-6 mb-3">
+                    {% if authority == 'doctor'%}
+                        <h6>Specialization</h6>
+                        <p class="text-muted">{{data.spec}}</p>
+                        {%endif%}
+                    </div>
+                 
                   </div>
                 </div>
               </div>

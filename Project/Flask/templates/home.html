@@ -38,18 +38,18 @@
 
   <header class="site-navbar js-sticky-header site-navbar-target" role="banner">
 
-    <div class="container">
+    <div class="container" {% if authority == 'admin' %} style = "margin-right: 100px;" {%endif%}>
       <div class="row align-items-center position-relative">
 
 
         <div class="site-logo">
-          <a href="home" class="text-black" style = "margin-left: -100px;"><span class="text-primary">Operation Rooms</a>
+          <a href="home" class="text-black" {% if authority == 'admin' %} style = "margin-left: -200px;"{%endif%}{% if authority != 'admin' %} style = "margin-left: -70px;"{%endif%}><span class="text-primary">Operation Rooms</a>
         </div>
 
-        <div class="col-12">
+        <div class="col-12" {% if authority == 'admin' %} style = "padding-left: 130px;" {%endif%}>
           <nav class="site-navigation text-right ml-auto " role="navigation">
 
-            <ul class="site-menu main-menu js-clone-nav ml-auto d-none d-lg-block" style = "margin-left: -100px;">
+            <ul class="site-menu main-menu js-clone-nav ml-auto d-none d-lg-block">
               <li><a href="home" class="nav-link">Home</a></li>
               <li class="has-children">
                 <a class="nav-link">Profile</a>
@@ -83,12 +83,11 @@
               {% if authority == 'admin' or authority ==  'engineer'%}
               <li><a href="rooms_info" class="nav-link">Rooms Info</a></li>
               {%endif%}
-              
-
-
-
+               {% if authority == 'admin' %}
+              <li><a href="viewcomplaints" class="nav-link">View Complaints</a></li>
+              {%endif%}           
               <li><a href="about_us" class="nav-link">About Us</a></li>
-              <a href="logout"><button type="button" class="btn btn-outline-primary me-2" style="margin-left: 70px;">Log Out</button></a>
+              <a href="logout"><button type="button" class="btn btn-outline-primary me-2" {% if authority != 'admin' %} style="margin-left: 70px;" {%endif%}>Log Out</button></a>
             </ul>
           </nav>
 
