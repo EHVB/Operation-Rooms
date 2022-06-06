@@ -5,8 +5,8 @@ import datetime
 mydb = mysql.connector.connect(
   host="localhost",
   user="root",
-  passwd="ehab",
-  database="project"
+  passwd="admin",
+  database="operation"
 )
 mycursor = mydb.cursor()
 
@@ -31,6 +31,7 @@ def about_us():
 @app.route('/appointments')
 def appointments():
      if 'loggedin' in session: 
+
         username = session['username']
         currentdate= datetime.datetime.now()
         print(currentdate)
@@ -60,9 +61,9 @@ def appointments():
          
       }
             return render_template('data.html',data=data,authority=session['authority'])
-        if session ['authority']== 'engineer' or session['authority'] == 'admin':
 
-
+        if session ['authority']== 'engineer' :
+           
            sql_select_Query = "select appointments.OR_number,appointments.start_date,appointments.end_date,  nurse.fname as 'nurse.fname' ,nurse .lname as'nurse.lastname',doctors.fname as 'Doctor fName', doctors.lname 'Doctor lName' from doctors join appointments on doctors.user_name=D_user_name join nurse on N_user_name = nuser_name join patient on patient_ssn = patient.ssn  Where DATE(start_date) > %s"
            mycursor.execute(sql_select_Query,(currentdate,))
            myresult= mycursor.fetchall()
@@ -72,6 +73,18 @@ def appointments():
               'header':row_headers
            }
            return render_template('data.html',data=data,authority=session['authority'])
+
+        if session['authority'] == 'admin':
+               sql_select_Query = "select appointments.OR_number,appointments.start_date,appointments.end_date,  nurse.fname as 'nurse.fname' ,nurse .lname as'nurse.lastname',doctors.fname as 'Doctor fName', doctors.lname 'Doctor lName' from doctors join appointments on doctors.user_name=D_user_name join nurse on N_user_name = nuser_name join patient on patient_ssn = patient.ssn  Order by (start_date)"
+               mycursor.execute(sql_select_Query)
+               myresult= mycursor.fetchall()
+               row_headers=[x[0] for x in mycursor.description]
+               data={
+              'rec':myresult,
+              'header':row_headers
+           }
+               return render_template('data.html',data=data,authority=session['authority'])
+
 
                         
      else:
@@ -282,7 +295,7 @@ def sign_up():
         
         
       if account or account1 or account2:
-         return redirect(url_for('home'))
+         return redirect(url_for('sign_up', msg="username or SSN already exists"))
 
                       
             
