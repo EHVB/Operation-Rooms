@@ -36,7 +36,7 @@ def appointments():
         currentdate= datetime.datetime.now()
         print(currentdate)
         if session ['authority']== 'nurse': 
-            sql_select_Query = "select DISTINCT patient.fname as'patient.fname', patient.lname as 'patient.lname' ,patient_ssn,start_date,end_date, OR_number, doctors.fname as 'dr.fname' ,doctors .lname as'dr.lastname'  from nurse join appointments on nuser_name=N_user_name join doctors on D_user_name = user_name join patient on patient_ssn = patient.ssn  Where nuser_name= %s And  DATE(start_date) > %s"
+            sql_select_Query = "select DISTINCT patient.fname as'patient.fname',  patient.lname as 'patient.lname' ,patient_ssn,start_date,end_date, OR_number, appointments.operation_number, doctors.fname as 'dr.fname' ,doctors .lname as'dr.lastname'  from nurse join appointments on nuser_name=N_user_name join doctors on D_user_name = user_name join patient on patient_ssn = patient.ssn  Where nuser_name= %s And  DATE(start_date) > %s"
             mycursor.execute(sql_select_Query,(username,currentdate,))
             myresult= mycursor.fetchall()
             row_headers=[x[0] for x in mycursor.description] 
@@ -49,7 +49,7 @@ def appointments():
       }
             return render_template('data.html',data=data,authority=session['authority'])
         if session ['authority']== 'doctor': 
-            sql_select_Query = "select DISTINCT patient.fname as'patient.fname', patient.lname as 'patient.lname' ,patient_ssn,start_date,end_date, OR_number, nurse.fname as 'nurse.fname' ,nurse .lname as'nurse.lastname'  from doctors join appointments on doctors.user_name=D_user_name join nurse on N_user_name = nuser_name join patient on patient_ssn = patient.ssn  Where doctors.user_name= %s And  DATE(start_date) > %s"
+            sql_select_Query = "select DISTINCT patient.fname as'patient.fname', patient.lname as 'patient.lname' ,patient_ssn,start_date,end_date, OR_number, appointments.operation_number, nurse.fname as 'nurse.fname' ,nurse .lname as'nurse.lastname'  from doctors join appointments on doctors.user_name=D_user_name join nurse on N_user_name = nuser_name join patient on patient_ssn = patient.ssn  Where doctors.user_name= %s And  DATE(start_date) > %s"
             mycursor.execute(sql_select_Query,(username,currentdate,))
             myresult= mycursor.fetchall()
             row_headers=[x[0] for x in mycursor.description] 
@@ -64,7 +64,7 @@ def appointments():
 
         if session ['authority']== 'engineer' :
            
-           sql_select_Query = "select appointments.OR_number,appointments.start_date,appointments.end_date,  nurse.fname as 'nurse.fname' ,nurse .lname as'nurse.lastname',doctors.fname as 'Doctor fName', doctors.lname 'Doctor lName' from doctors join appointments on doctors.user_name=D_user_name join nurse on N_user_name = nuser_name join patient on patient_ssn = patient.ssn  Where DATE(start_date) > %s"
+           sql_select_Query = "select DISTINCT appointments.operation_number, appointments.OR_number,appointments.start_date,appointments.end_date,  nurse.fname as 'nurse.fname' ,nurse .lname as'nurse.lastname',doctors.fname as 'Doctor fName', doctors.lname 'Doctor lName' from doctors join appointments on doctors.user_name=D_user_name join nurse on N_user_name = nuser_name join patient on patient_ssn = patient.ssn  Where DATE(start_date) > %s"
            mycursor.execute(sql_select_Query,(currentdate,))
            myresult= mycursor.fetchall()
            row_headers=[x[0] for x in mycursor.description]
@@ -75,7 +75,7 @@ def appointments():
            return render_template('data.html',data=data,authority=session['authority'])
 
         if session['authority'] == 'admin':
-               sql_select_Query = "select appointments.OR_number,appointments.start_date,appointments.end_date,  nurse.fname as 'nurse.fname' ,nurse .lname as'nurse.lastname',doctors.fname as 'Doctor fName', doctors.lname 'Doctor lName' from doctors join appointments on doctors.user_name=D_user_name join nurse on N_user_name = nuser_name join patient on patient_ssn = patient.ssn  Order by (start_date)"
+               sql_select_Query = "select appointments.operation_number, appointments.OR_number,appointments.start_date,appointments.end_date,  nurse.fname as 'nurse.fname' ,nurse .lname as'nurse.lastname',doctors.fname as 'Doctor fName', doctors.lname 'Doctor lName' from doctors join appointments on doctors.user_name=D_user_name join nurse on N_user_name = nuser_name join patient on patient_ssn = patient.ssn  Order by (start_date)"
                mycursor.execute(sql_select_Query)
                myresult= mycursor.fetchall()
                row_headers=[x[0] for x in mycursor.description]
@@ -295,7 +295,7 @@ def sign_up():
         
         
       if account or account1 or account2:
-         return redirect(url_for('sign_up', msg="username or SSN already exists"))
+         return render_template('sign_up.html', msg="SSN/username already exists")
 
                       
             
@@ -305,26 +305,29 @@ def sign_up():
 
             mycursor.execute("insert into nurse(nuser_name,password,fname,lname,ssn,sex,phone,active,birth_date) values(%s,%s,%s,%s,%s,%s,%s,0,%s)",(username,password,fname,lname,ssn,sex,phone,formatteddate))
             mydb.commit()
-            return redirect(url_for('login'))
+            return render_template('sign_up.html',msg="Signed Up successfully, please Wait for admin Activation for your account!")
          except: 
-            return redirect(url_for('home'))
+            return  render_template('sign_up.html', msg="something went wrong")
+
 
       elif job == 'Doctor':
          try:
 
              mycursor.execute("insert into doctors(user_name,password,fname,lname,ssn,sex,phone,specialization,active,birth_date) values(%s,%s,%s,%s,%s,%s,%s,%s,0,%s)",(username,password,fname,lname,ssn,sex,phone,spec,formatteddate))
              mydb.commit()
-             return redirect(url_for('login'))
+             return render_template('sign_up.html',msg="Signed Up successfully, please Wait for admin Activation for your account!")
          except: 
-            return redirect(url_for('home'))    
+            return  render_template('sign_up.html', msg="something went wrong")
+    
       else :
          try: 
 
             mycursor.execute("insert into engineer(user_name,password,fname,lname,ssn,sex,phone,active,birth_date) values(%s,%s,%s,%s,%s,%s,%s,0,%s)",(username,password,fname,lname,ssn,sex,phone,formatteddate))
             mydb.commit()
-            return redirect(url_for('login'))
+            return render_template('sign_up.html',msg="Signed Up successfully, please Wait for admin Activation for your account!")
          except: 
-            return redirect(url_for('home'))   
+            return  render_template('sign_up.html', msg="something went wrong")
+   
 
       
       
@@ -391,7 +394,7 @@ def data():
         currentdate= datetime.datetime.now()
         print(currentdate)
         if session ['authority']== 'nurse': 
-            sql_select_Query = "select DISTINCT patient.fname as'patient.fname', patient.lname as 'patient.lname' ,patient_ssn,start_date,end_date, OR_number, doctors.fname as 'dr.fname' ,doctors .lname as'dr.lastname'  from nurse join appointments on nuser_name=N_user_name join doctors on D_user_name = user_name join patient on patient_ssn = patient.ssn  Where nuser_name= %s And  DATE(end_date) < %s "
+            sql_select_Query = "select DISTINCT patient.fname as'patient.fname', patient.lname as 'patient.lname' ,patient_ssn,start_date,end_date, OR_number, appointments.operation_number, doctors.fname as 'dr.fname' ,doctors .lname as'dr.lastname'  from nurse join appointments on nuser_name=N_user_name join doctors on D_user_name = user_name join patient on patient_ssn = patient.ssn  Where nuser_name= %s And  DATE(end_date) < %s "
             mycursor.execute(sql_select_Query,(username,currentdate,))
             myresult= mycursor.fetchall()
             row_headers=[x[0] for x in mycursor.description] 
@@ -404,7 +407,7 @@ def data():
       }
             return render_template('data.html',data=data,authority=session['authority'])
         if session ['authority']== 'doctor': 
-            sql_select_Query = "select DISTINCT patient.fname as'patient.fname', patient.lname as 'patient.lname' ,patient_ssn,start_date,end_date, OR_number, nurse.fname as 'nurse.fname' ,nurse .lname as'nurse.lastname'  from doctors join appointments on doctors.user_name=D_user_name join nurse on N_user_name = nuser_name join patient on patient_ssn = patient.ssn  Where doctors.user_name= %s And  DATE(end_date) < %s"
+            sql_select_Query = "select DISTINCT patient.fname as'patient.fname', patient.lname as 'patient.lname' ,patient_ssn,start_date,end_date, OR_number, appointments.operation_number, nurse.fname as 'nurse.fname' ,nurse .lname as'nurse.lastname'  from doctors join appointments on doctors.user_name=D_user_name join nurse on N_user_name = nuser_name join patient on patient_ssn = patient.ssn  Where doctors.user_name= %s And  DATE(end_date) < %s"
             mycursor.execute(sql_select_Query,(username,currentdate,))
             myresult= mycursor.fetchall()
             row_headers=[x[0] for x in mycursor.description] 
