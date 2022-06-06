@@ -30,8 +30,9 @@ CREATE TABLE `appointments` (
   `end_date` datetime DEFAULT NULL,
   `OR_number` varchar(45) DEFAULT NULL,
   `appointment_num` int NOT NULL AUTO_INCREMENT,
+  `operation_number` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`appointment_num`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,7 +41,7 @@ CREATE TABLE `appointments` (
 
 LOCK TABLES `appointments` WRITE;
 /*!40000 ALTER TABLE `appointments` DISABLE KEYS */;
-INSERT INTO `appointments` VALUES ('2029202','ahmed99','ahmed233','2022-06-21 08:30:00','2022-06-21 10:00:00','A2',1),('2164716','ehab12','alaa13','2022-06-21 11:15:00','2022-06-23 12:00:00','C7',2),('3265568','ayas25','ali00','2022-05-22 09:00:00','2022-05-23 12:00:00','C5',3),('35673292','salamon10','amira11','2022-04-25 06:00:00','2022-04-25 12:30:00','A2',4),('4782394','ehab12','huda11','2022-03-26 07:20:00','2022-06-27 12:40:00','B1',5),('5436623','ayas25','lujain12','2022-06-29 00:00:00','2022-06-30 00:00:00','B3',6),('6347265','mousa32','mariam22','2022-07-02 00:00:00','2022-07-02 00:00:00','C4',7),('73321939','ayaa16','nada18','2022-07-04 00:00:00','2022-07-05 00:00:00','A4',8);
+INSERT INTO `appointments` VALUES ('2029202','ahmed99','ahmed233','2022-06-21 08:30:00','2022-06-21 10:00:00','A2',1,'x1'),('2164716','ehab12','alaa13','2022-06-21 11:15:00','2022-06-23 12:00:00','C7',2,'x2'),('3265568','ayas25','ali00','2022-05-22 09:00:00','2022-05-23 12:00:00','C5',3,'x3'),('35673292','salamon10','amira11','2022-04-25 06:00:00','2022-04-25 12:30:00','A2',4,'x4'),('4782394','ehab12','huda11','2022-03-26 07:20:00','2022-06-27 12:40:00','B1',5,'x5'),('5436623','ayas25','lujain12','2022-06-29 00:00:00','2022-06-30 00:00:00','B3',6,'x6'),('6347265','mousa32','mariam22','2022-07-02 00:00:00','2022-07-02 00:00:00','C4',7,'x7'),('73321939','ayaa16','nada18','2022-07-04 00:00:00','2022-07-05 00:00:00','A4',8,'x8'),('2029202','ehab12','alaa13','2022-06-21 08:30:00','2022-06-21 10:00:00','A2',9,'x1'),('35673292','mousa32','lujain12','2022-04-25 06:00:00','2022-04-25 12:30:00','A2',10,'x4');
 /*!40000 ALTER TABLE `appointments` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -400,4 +401,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-06-05 21:50:31
+-- Dump completed on 2022-06-06 14:08:04
