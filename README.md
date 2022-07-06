@@ -13,8 +13,8 @@
 - create the schema operationroom 
 - run the sql script file from the repo to create required tables and insert data 
 - change the password of the database in app.py to the password of your local host connection in the DBMS 
-- Accounts to be used to log in the site are in their specfied tables ( doctor,nurse,engineer) ( only active users can log in)
+- Accounts to be used to log into the site are in their specfied tables ( doctor, nurse, engineer) ( only active users can log in)
 
 
-Now you can run app.py on your local server, Please leave any notes or reccomendations by sending an email ( our emails are available after logging in in the abouts us tab). 
+Now you can run app.py on your local server, Please leave any notes or reccomendations by sending an email ( our emails are available after logging in the abouts us tab). 
 
